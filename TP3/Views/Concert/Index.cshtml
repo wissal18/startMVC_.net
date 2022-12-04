@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TP3.Models.ConcertViewModel>
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Concerts</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditConcertModal" asp-action="AddConcert" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Concert
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ConcertName) </td>
+                        <td>@Html.DisplayFor(modelItem => item.ConcertDescription)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                        <td>
+                            
+                            <i class="glyphicon glyphicon-pencil"></i>@Html.ActionLink("Edit", "Edit", new { id=item.ConcertId }) |
+                            <i class="glyphicon glyphicon-book"></i>@Html.ActionLink("Details", "Details", new { id=item.ConcertId }) |
+                            <i class="glyphicon glyphicon-minus-sign"></i>@Html.ActionLink("Delete", "Delete", new { id=item.ConcertId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
